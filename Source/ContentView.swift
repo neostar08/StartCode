@@ -22,6 +22,19 @@ struct ContentView: View {
                 .offset(x: isOpen ? 0 : -300)
                 .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: 1, z: 0))
 // Group ( have to create) 
+            Group {
+                switch selectedTab {
+                case .chat:
+                    HomeView() // Set this as the main menu
+                case .search:
+                    LessonsListView() // Show LessonsListView for lessons tab
+                case .timer:
+                    Text("Timer")
+                case .bell:
+                    Text("Bell")
+                case .user:
+                    Text("User")
+                }
           safeAreaInset(edge: .bottom) {
                 Color.clear.frame(width: 80)
             }
@@ -35,7 +48,24 @@ struct ContentView: View {
             .scaleEffect(show ? 0.92 : 1)
             .ignoresSafeArea()
           // if selectedTab ( need to create )
-           button.view()
+
+               if selectedTab != .search {
+                Image(systemName: "person")
+                    .frame(width: 36, height: 36)
+                    .background(.white)
+                    .mask(Circle())
+                    .shadow(color: Color("Shadow").opacity(0.2), radius: 5, x: 0, y: 5)
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            show = true
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                    .padding()
+                    .offset(y: 4)
+                    .offset(x: isOpen ? 100 : 0)
+
+              button.view()
                     .frame(width: 44, height: 44)
                     .mask(Circle())
                     .shadow(color: Color("Shadow").opacity(0.2), radius: 5, x: 0, y: 5)
