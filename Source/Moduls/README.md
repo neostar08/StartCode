@@ -11,7 +11,7 @@
 	•	🔔 Notifications & Updates – Stay informed about new lessons (coming soon).
 	•	📦 Firebase Integration – Save user progress (optional feature).
 
-📂 Project Structure
+## 📂 Project Structure
 
 📦 C++ Learning App
 ├── 📂 Models
@@ -25,9 +25,9 @@
 │   └── Images and color assets
 └── README.md                     # Documentation (this file)
 
-💡 How It Works
+## 💡 How It Works
 
-🔗 Navigation through Course Sections
+## 🔗 Navigation through Course Sections
 
 The CourseSectionListView shows all available sections. When a section is tapped, it navigates to the corresponding detailed lesson view.
 
@@ -35,7 +35,7 @@ NavigationLink(destination: section.destination) {
     CourseSectionCardView(section: section)
 }
 
-📋 Course Section Model (CourseSection.swift)
+## 📋 Course Section Model (CourseSection.swift)
 
 The CourseSection model defines the structure of each lesson section, including title, caption, colors, images, and lesson content.
 
@@ -48,7 +48,7 @@ struct CourseSection: Identifiable {
     var destination: AnyView
 }
 
-Example Course Section with a detailed lesson:
+## Example Course Section with a detailed lesson:
 
 CourseSection(
     title: "Introduction to C++",
@@ -58,7 +58,7 @@ CourseSection(
     destination: AnyView(IntroductionLessonView())
 )
 
-📘 Lesson Details (LessonDetailView.swift)
+## 📘 Lesson Details (LessonDetailView.swift)
 
 Each lesson detail view presents the topic using highlighted code blocks, text explanations, and navigation tools.
 
@@ -77,7 +77,7 @@ struct IntroductionLessonView: View {
     }
 }
 
-💻 CodeBlock View – Display Code with Compiler Style
+## 💻 CodeBlock View – Display Code with Compiler Style
 
 The CodeBlock view renders code snippets with a monospaced font, providing a compiler-like look and feel.
 
@@ -97,7 +97,7 @@ struct CodeBlock: View {
     }
 }
 
-✨ Favorites View – Save Your Progress
+## ✨ Favorites View – Save Your Progress
 
 Users can mark lessons as favorites. The favorites view displays all saved lessons in an organized manner.
 
