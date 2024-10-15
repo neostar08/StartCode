@@ -2,7 +2,7 @@
 
 	Learn C++ step-by-step with well-organized lessons, interactive quizzes, and beautiful UI design. This app provides in-depth learning modules with compiler-style code snippets to make programming fun and easy!
 
-🛠 Features
+## 🛠 Features
 
 	•	🧩 Modular Views – Each course section and lesson is structured for scalability and performance.
 	•	🎨 Beautiful UI with Gradient Design – Clean, modern layout with smooth navigation.
