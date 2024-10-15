@@ -1,4 +1,4 @@
-📚 C++ Learning App – Modular Views for Beginners 🚀
+#📚 C++ Learning App – Modular Views for Beginners 🚀
 
 	Learn C++ step-by-step with well-organized lessons, interactive quizzes, and beautiful UI design. This app provides in-depth learning modules with compiler-style code snippets to make programming fun and easy!
 
