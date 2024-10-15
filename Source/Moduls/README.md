@@ -38,7 +38,7 @@ NavigationLink(destination: section.destination) {
 ## 📋 Course Section Model (CourseSection.swift)
 
 The CourseSection model defines the structure of each lesson section, including title, caption, colors, images, and lesson content.
-
+```swift
 struct CourseSection: Identifiable {
     var id = UUID()
     var title: String
@@ -47,9 +47,9 @@ struct CourseSection: Identifiable {
     var image: Image
     var destination: AnyView
 }
-
+```
 ## Example Course Section with a detailed lesson:
-
+```swift
 CourseSection(
     title: "Introduction to C++",
     caption: "Start Here",
@@ -57,11 +57,11 @@ CourseSection(
     image: Image("Avatar 2"),
     destination: AnyView(IntroductionLessonView())
 )
-
+```
 ## 📘 Lesson Details (LessonDetailView.swift)
 
 Each lesson detail view presents the topic using highlighted code blocks, text explanations, and navigation tools.
-
+```swift
 struct IntroductionLessonView: View {
     var body: some View {
         VStack {
@@ -76,11 +76,11 @@ struct IntroductionLessonView: View {
         }
     }
 }
-
+```
 ## 💻 CodeBlock View – Display Code with Compiler Style
 
 The CodeBlock view renders code snippets with a monospaced font, providing a compiler-like look and feel.
-
+```swift
 struct CodeBlock: View {
     let code: String
     
@@ -96,7 +96,7 @@ struct CodeBlock: View {
         }
     }
 }
-
+```
 ## ✨ Favorites View – Save Your Progress
 
 Users can mark lessons as favorites. The favorites view displays all saved lessons in an organized manner.
