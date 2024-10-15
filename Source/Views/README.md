@@ -150,15 +150,3 @@ Special thanks to:
 For questions or support, please open an issue or reach out via sher.4.95@mail.ru
 
 Happy Learning! 🎉🚀
----
-
-### **Explanation**
-
-This **`README.md`**:
-1. **Organizes** your views clearly.
-2. **Uses code blocks** to simulate code snippets.
-3. **Explains each view and its purpose.**
-4. **Includes design elements**, technologies used, and future improvements.
-5. **Encourages contributions** and community involvement.
-
-This version will **impress users and contributors** on GitHub, giving them a **professional and detailed overview** of your project!
