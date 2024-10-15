@@ -1,4 +1,4 @@
-#📚 C++ Learning App – Modular Views for Beginners 🚀
+📚 C++ Learning App – Modular Views for Beginners 🚀
 
 	Learn C++ step-by-step with well-organized lessons, interactive quizzes, and beautiful UI design. This app provides in-depth learning modules with compiler-style code snippets to make programming fun and easy!
 
@@ -34,6 +34,7 @@ The CourseSectionListView shows all available sections. When a section is tapped
 NavigationLink(destination: section.destination) {
     CourseSectionCardView(section: section)
 }
+
 📋 Course Section Model (CourseSection.swift)
 
 The CourseSection model defines the structure of each lesson section, including title, caption, colors, images, and lesson content.
