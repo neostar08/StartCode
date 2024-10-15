@@ -1,42 +1,60 @@
-// Added ContentView.swift
 //
 //  ContentView.swift
 //  AStartCode
 //
 //  Created by Neo Star on 7/2/24.
 //
+
 import SwiftUI
+import FirebaseAuth
 import RiveRuntime
+
 struct ContentView: View {
-  var body: some View {
-    @AppStorage("selectedTab") var selectedTab: Tab = .chat
+    @AppStorage("selectedTab") var selectedTab: Tab = .user
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = true
     @State var isOpen = false
     @State var show = false
+    @State private var showTabBar = true
+
     let button = RiveViewModel(fileName: "menu_button", stateMachineName: "State Machine")
+
+    var body: some View {
+        ZStack {
+            mainContent
+        }
+        .onAppear {
+            button.stop()
+        }
+        .environmentObject(NotificationViewModel())  // Provide the environment object
+    }
+
+    var mainContent: some View {
         ZStack {
             Color("Background 2").ignoresSafeArea()
 
             // SideMenu showing and hiding based on isOpen state
-            SideMenu()
+            SideMenu(isOpen: $isOpen)
                 .opacity(isOpen ? 1 : 0)
                 .offset(x: isOpen ? 0 : -300)
                 .rotation3DEffect(.degrees(isOpen ? 0 : 30), axis: (x: 0, y: 1, z: 0))
-// Group ( have to create) 
+
             Group {
                 switch selectedTab {
-                case .chat:
-                    HomeView() // Set this as the main menu
-                case .search:
-                    LessonsListView() // Show LessonsListView for lessons tab
-                case .timer:
-                    Text("Timer")
-                case .bell:
-                    Text("Bell")
                 case .user:
-                    Text("User")
+                    HomeView(showTabBar: $showTabBar)  // Pass showTabBar binding
+                case .chat:
+                    HelpView()
+                case .search:
+                    LessonsListView(showTabBar: $showTabBar)
+                case .timer:
+                    QuizView(quizzes: sampleCPlusPlusQuizzes)
+                case .bell:
+                    NotificationsView()
+                        .environmentObject(NotificationViewModel())  // Inject environment object
                 }
-          safeAreaInset(edge: .bottom) {
-                Color.clear.frame(width: 80)
+            }
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: 80)
             }
             .safeAreaInset(edge: .top) {
                 Color.clear.frame(height: 110)
@@ -47,9 +65,8 @@ struct ContentView: View {
             .scaleEffect(isOpen ? 0.9 : 1)
             .scaleEffect(show ? 0.92 : 1)
             .ignoresSafeArea()
-          // if selectedTab ( need to create )
 
-               if selectedTab != .search {
+            if selectedTab == .user && showTabBar {
                 Image(systemName: "person")
                     .frame(width: 36, height: 36)
                     .background(.white)
@@ -65,12 +82,11 @@ struct ContentView: View {
                     .offset(y: 4)
                     .offset(x: isOpen ? 100 : 0)
 
-              button.view()
+                button.view()
                     .frame(width: 44, height: 44)
                     .mask(Circle())
                     .shadow(color: Color("Shadow").opacity(0.2), radius: 5, x: 0, y: 5)
                     .onTapGesture {
-                        // Toggle SideMenu visibility when tapped
                         button.setInput("isOpen", value: isOpen)
                         withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                             isOpen.toggle()
@@ -80,17 +96,23 @@ struct ContentView: View {
                     .padding()
                     .offset(x: isOpen ? 216 : 0)
             }
- TabBar()
-                .offset(y: isOpen ? 300 : 0)
-                .offset(y: show ? 200 : 0)
-                .offset(y: -24)
-                .background(
-                    LinearGradient(colors: [Color("Background").opacity(0), Color("Background")], startPoint: .top, endPoint: .bottom)
+
+            if showTabBar {
+                TabBar(selectedTab: $selectedTab)
+                    .offset(y: isOpen ? 300 : 0)
+                    .offset(y: show ? 200 : 0)
+                    .offset(y: -24)
+                    .background(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color("Background 2").opacity(0), Color("Background 2")]),
+                            startPoint: .top, endPoint: .bottom
+                        )
                         .frame(height: 150)
                         .frame(maxHeight: .infinity, alignment: .bottom)
                         .allowsHitTesting(false)
-                )
-                .ignoresSafeArea()
+                    )
+                    .ignoresSafeArea()
+            }
 
             if show {
                 OnboardingView(show: $show)
@@ -103,24 +125,12 @@ struct ContentView: View {
                     .zIndex(1)
             }
         }
-        .onAppear {
-            // Prevent the button animation from auto-playing
-            button.stop()
-        }
-    }
-
-    func triggerAnimation() {
-        // Call this function when you want to start the animation
-        button.play(animationName: "open")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(NotificationViewModel())  // Provide environment object in preview
     }
 }
-
-
-          
-
