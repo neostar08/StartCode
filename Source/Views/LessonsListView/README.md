@@ -123,7 +123,8 @@ struct LessonsListView_Previews: PreviewProvider {
     }
 }
 ```
-![Lesson Preview] (file:///Users/pc/Desktop/Screenshot%202024-10-23%20at%202.06.02%E2%80%AFPM.png)
+<img width="717" alt="Screenshot 2024-10-23 at 2 06 02 PM" src="https://github.com/user-attachments/assets/9abb2f82-e83d-4404-8bb8-ccb4ca6301d0">
+
 
 ## 🔧 Technologies Used
 
